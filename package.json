@@ -1,0 +1,19 @@
+{
+  "name": "proiect-2-lmaria26",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HDR-2021-2022/proiect-2-lmaria26.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HDR-2021-2022/proiect-2-lmaria26/issues"
+  },
+  "homepage": "https://github.com/HDR-2021-2022/proiect-2-lmaria26#readme"
+}
