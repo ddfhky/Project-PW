@@ -26,9 +26,9 @@ app.get('/', (req, res) => res.send('Hello World'));
 app.get('/chestionar', (req, res) => {
 	const listaIntrebari = [
 		{
-			intrebare: 'Întrebarea 1',
-			variante: ['varianta 1', 'varianta 2', 'varianta 3', 'varianta 4'],
-			corect: 0
+			intrebare: 'Who took the official photographs of the wedding of Prince Charles and Lady Diana in 1981?',
+			variante: ['Horst P. Horst', 'Patrick Lichfield','Frederick Sommer'],
+			corect: 1
 		},
 		//...
 	];
