@@ -2,7 +2,7 @@
     {
         "intrebare": "The amount of light or darkness on a photograph is known as the:",
         "variante": ["Exposure", "Shutter Speed","Contrast","Sharpness"],
-        "corect": 1 
+        "corect": 0 
     },
     {
         "intrebare": "The amount of light passing through a lens is defined by the:",
@@ -12,7 +12,7 @@
     {
         "intrebare": "What is the unit of measurement for light in photography:",
         "variante": ["Apertures", "Shutter speeds","Candelabras","Stops"],
-        "corect": 1
+        "corect": 3
     },
     {
         "intrebare": "When taking a photo at a gig, which camera mode should you be on?",
@@ -22,6 +22,6 @@
     {
         "intrebare": "The balancing of light within a photograph is known as the:",
         "variante": ["White balance", "The aperture","The shutter speed","The exposure"],
-        "corect": 1
+        "corect": 3
     }
 ]
