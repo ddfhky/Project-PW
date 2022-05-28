@@ -31,7 +31,7 @@ header>img{
 
 nav {
     width:100%;
-    padding: 10px 0px;
+    padding: 7px 0px;
     border-top:2px solid #6E4B6B;
     border-bottom:2px solid #6E4B6B;
     display: flex;
@@ -61,12 +61,11 @@ nav>a:hover {
 footer {
     text-align: center;
     padding: 3px;
-    background-color: #ffc6ab;
-    border:2px solid #f1ae93;
-    border-radius: 5px;
-    color: #6a0505ba;
+    background-color: #eddcda;
+    border-top:1px solid #d5b8b5;
+    color: #6c514e;
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
-  }
+}
