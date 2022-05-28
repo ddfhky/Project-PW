@@ -2,15 +2,15 @@
 	<h2> Quiz </h2>
 
 	<form action="/rezultat-chestionar" method="POST">
-		<% for(let i=0; i<intrebari.length; ++i) { %> 
+		<% for(var i=0; i<intrebari.length; ++i) { %> 
 			<p><%= intrebari[i].intrebare %></p> 
-			<% let c=0; %>
-			<% for(let varianta of intrebari[i].variante) { %>
+			<% var c=0; %>
+			<% for(var j=0 in intrebari[i].variante) { %>
 					<input type="radio" name="question<%= i %>" value="<%= c++ %>"/>
-					<label for="question<%= i %>"><%= varianta %></label> <br/>
+					<label for="question<%= i %>"><%= intrebari[i].variante[j] %></label> <br/>
 				<% } %> 
 			<br>
-			<input type="text" name="answer<%= i %>" value="<% intrebari[i].corect %>" hidden readonly></input>
+			<input type="text" name="answer<%= i %>" value="<%= intrebari[i].corect %>" hidden readonly></input>
 		<% } %>
 
 			<button id ="btn" type="submit">Send</button><br><br>

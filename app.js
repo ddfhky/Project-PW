@@ -60,9 +60,9 @@ app.post('/rezultat-chestionar', (req, res) => {
 	for( var i=1, l=Object.keys(listaIntrebari).length; i<=l; i++){
 		all++;
 	}
-
-	res.render('rezultat-chestionar',{intrebari:listaIntrebari, correctAnswers, all, rasp});
+	
+	 res.render('rezultat-chestionar',{intrebari:listaIntrebari, correctAnswers, all, rasp});
 
 });
 
-app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:`));
+app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:`+port));
