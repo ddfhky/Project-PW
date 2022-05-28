@@ -45,23 +45,24 @@ app.get('/rezultat-chestionar',(req,res) => {
 });
 
 app.post('/rezultat-chestionar', (req, res) => {
-	 var score=0;
-	 for(var i=0; i<intrebari.length; i++){
-		//var intrebare = intrebari[i];
-		var userAnswer = readlineSync.intrebare(intrebari[i].intrebare);
-		if(userAnswer == corect){
-			console.log("correct! ");
-    		score++;
-		}
-		else{
-			console.log("wrong! ");
-			score--;
-		  }
-	  }
-	// console.log(req.body);
-	// res.send("formular: " + JSON.stringify(req.body));
-	console.log("YOUR FINAL SCORE IS: " + score+"/10")
-	res.render('rezultat-chestionar',{listaIntrebari: score});
+	var data = req.body;
+	var correctAnswers = 0;
+	var rasp=[];
+	var i=0;
+
+	while(data["question"+i] !== undefined){
+		rasp=rasp + data["question"+i] + " ";
+		if(data["question"+i] === data["answer"+i])
+			correctAnswers++;
+		i++;
+	}
+	var all=0;
+	for( var i=1, l=Object.keys(listaIntrebari).length; i<=l; i++){
+		all++;
+	}
+
+	res.render('rezultat-chestionar',{intrebari:listaIntrebari, correctAnswers, all, rasp});
+
 });
 
 app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:`));
