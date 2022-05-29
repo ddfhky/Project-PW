@@ -69,3 +69,68 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+.titles{
+    padding: 10px;
+    margin:10px 0;
+    width:100%;
+    display:flex;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Dancing Script';
+    font-size:50px;
+}
+
+.the-quiz{
+    display:flex;
+    justify-content: center;
+    margin:50px auto;
+    max-width: 600px;
+    padding: 10px 15px;
+    background-color: #59afbb;
+    border-radius: 4.2px;
+    box-shadow: 0px 3px 7px -2px rgb(0 0 0 / 70%);
+}
+
+.question-in-quiz{
+    display: block;
+    color:#060c14;
+    font-size:18px;
+    margin-top:12px;
+}
+
+.question-in-quiz p{
+    padding:3px;
+}
+
+.variante-in-quiz{
+    margin-left:20px;
+    display: block;
+    color:white;
+    font-size:16px;
+}
+
+#var{
+    margin-top:6px;
+}
+
+.btn{
+    margin-top:20px;
+    margin-bottom:10px;
+    display: flex;
+    justify-content: center;
+}
+
+.btn-quiz{
+    padding:0px 15px;
+    background-color:#7c4e7a;
+    border:1px solid #82a3ad;
+    color:#fff0fe;
+    font-size:16px;
+}
+
+.btn-quiz:hover{
+    background-color:#d9aba4;
+    border:1px solid #996e95;
+    color:#3e1b3b;
+}

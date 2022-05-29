@@ -1,18 +1,25 @@
 <body>
-	<h2> Quiz </h2>
-
+<div class="the-quiz">
 	<form action="/rezultat-chestionar" method="POST">
-		<% for(var i=0; i<intrebari.length; ++i) { %> 
-			<p><%= intrebari[i].intrebare %></p> 
+		
+			<% for(var i=0; i<intrebari.length; ++i) { %> 
+		<div class="question-in-quiz">
+				<p><b><%= intrebari[i].intrebare %></b></p> 
+		</div>
 			<% var c=0; %>
+		<div class="variante-in-quiz">
 			<% for(var j=0 in intrebari[i].variante) { %>
-					<input type="radio" name="question<%= i %>" value="<%= c++ %>"/>
-					<label for="question<%= i %>"><%= intrebari[i].variante[j] %></label> <br/>
-				<% } %> 
-			<br>
-			<input type="text" name="answer<%= i %>" value="<%= intrebari[i].corect %>" hidden readonly></input>
+						<input id="var" type="radio" name="question<%= i %>" value="<%= c++ %>"/>
+						<label id="var" for="question<%= i %>"><%= intrebari[i].variante[j] %></label> <br/>
+					<% } %> 
+				<br>
+				<input type="text" name="answer<%= i %>" value="<%= intrebari[i].corect %>" hidden readonly></input>
+		</div>
 		<% } %>
-
-			<button id ="btn" type="submit">Send</button><br><br>
+				
+		<div class="btn">
+			<button class="btn-quiz" type="submit">SEND</button><br><br>
+		</div>
 	</form>
+</div>
 </body>
