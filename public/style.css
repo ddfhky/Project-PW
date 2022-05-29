@@ -57,6 +57,7 @@ nav>a:hover {
     font-weight: bold;
     padding-top:3px;
     padding-bottom:3px;
+    border-radius:5px;
 }
 
 footer {
@@ -165,4 +166,55 @@ footer {
     background-color: #F2F7FC;
     color:#5a2b55f5;
     font-weight: bold;
+}
+
+.login-container{
+    display:flex;
+    justify-content: center;
+    margin:50px auto;
+    max-width: 600px;
+    padding: 10px 15px;
+    background-color: #f5f5f5;
+    border-radius: 4.2px;
+    box-shadow: 0px 3px 7px -2px rgb(0 0 0 / 70%);
+}
+
+.login-container input[type=text] {
+    padding: 10px;
+    margin:10px 0;
+    width:100%; 
+  }
+
+.login-container input[type=password] {
+    padding: 10px;
+    margin:10px 0;
+    width:100%; 
+  }
+
+.login-container label{
+
+    color:#482545;
+    font-size:17px;
+}
+
+.border-input-login{
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #42A1A5;
+}
+
+.btn-login{
+    padding:5px 20px;
+    font-size:15px;
+    border:1px solid #2e9297;
+    background-color: #397ea3;
+    color:white;
+}
+
+.btn-login:hover{
+    padding:5px 20px;
+    font-size:15px;
+    border:1px solid #816e7f;
+    background-color: #a598a4;
+    color:#281b27;
 }
