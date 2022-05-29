@@ -39,6 +39,7 @@ nav {
     align-content: space-around;
     align-items: center;
     left: 0;
+    font-weight:bold;
 }
 
 nav>a {
@@ -78,7 +79,7 @@ footer {
     text-align: center;
     justify-content: center;
     font-family: 'Dancing Script';
-    font-size:50px;
+    font-size:38px;
 }
 
 .the-quiz{
@@ -133,4 +134,35 @@ footer {
     background-color:#d9aba4;
     border:1px solid #996e95;
     color:#3e1b3b;
+}
+
+.correct-answers{
+    display: flex;
+    justify-content: center;
+    font-size:17px;
+    color:#5a0c55;
+    padding:2px;
+    margin:0;
+}
+
+.hr-correct-answers{
+    border: 1px solid #87557d4d;
+    width:150px;
+}
+
+#correct-answers-with-input{
+    font-size:17px;
+    color:#5a0c55;
+    padding:2px;
+    margin-bottom:2px;
+}
+
+#the-box-with-answer{
+    padding:7px;
+    border-radius:5px;
+    border:1px solid #b688d9;
+    width:120px;
+    background-color: #F2F7FC;
+    color:#5a2b55f5;
+    font-weight: bold;
 }

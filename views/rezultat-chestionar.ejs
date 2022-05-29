@@ -1,16 +1,29 @@
-<form>
-    <h2>The result of the quiz</h2>
-    <h2 style="color:red">Correct answers: <%= correctAnswers %> from <%= all %></h2><br>
-    <% for(var i=0; i<intrebari.length; ++i) { %> 
-        <p><%= intrebari[i].intrebare %></p> 
-        <% var c=0; %>
-        <% for(var j=0 in intrebari[i].variante){ %>
-                <input type="radio" name="question<%= i %>" value="<%= c++ %>"/>
-                <label for="question<%= i %>"><%= intrebari[i].variante[j] %></label> 
-                <br>
-        <% }%>
-        <label>Correct answer: </label>
-        <input type="text" name="answer<%= i %>" value="<%= intrebari[i].variante[intrebari[i].corect] %>" readonly></input>
-        <br><br>
-    <% } %>
-</form>
+<div class="the-quiz">
+    <form>
+        <h2 class="titles">The result of the quiz</h2>
+        <hr class="hr-correct-answers">
+        <h2 class="correct-answers">Correct: <%= correctAnswers %>/<%= all %></h2>
+        <hr class="hr-correct-answers">
+        <br>
+        <% for(var i=0; i<intrebari.length; ++i) { %>
+            <div class="question-in-quiz">   
+                <p><b><%= intrebari[i].intrebare %></b></p>
+            </div>     
+            <% var c=0; %>
+            <div class="variante-in-quiz">
+            <% for(var j=0 in intrebari[i].variante){ %>
+                    <input type="radio" name="question<%= i %>" value="<%= c++ %>"/>
+                    <label for="question<%= i %>"><%= intrebari[i].variante[j] %></label> 
+                    <br>
+            <% }%>
+            <br>
+            <label id="correct-answers-with-input"><b>Correct answer:</b> </label>
+            <input id="the-box-with-answer" type="text" name="answer<%= i %>" value="<%= intrebari[i].variante[intrebari[i].corect] %>" readonly></input>
+            </div>
+            <br>
+
+        <% } %>
+
+        <br>
+    </form>
+</div>
