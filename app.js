@@ -74,11 +74,33 @@ app.get('/autentificare',(req,res) => {
 	res.render('autentificare');
 });
 
+
+
 app.post('/verificare-autentificare', (req, res) => {
+
+	data = fs.readFileSync('utilizatori.json');
+	let listaUtilizatori = JSON.parse(data);
 
 	console.log("USER: ", req.body);
 
-
+	let username = req.body['username'],
+      password = req.body['password'];
+	var utilizator =null;
+	for(i=0; i<listaUtilizatori.length;i++){
+		if(listaUtilizatori[i].utilizator == username){
+			utilizator = listaUtilizatori[i];
+			break;
+		  }
+	}
+	if(utilizator!=null && password == utilizator.parola){
+		res.cookie("numeUtilizator", utilizator.prenume);
+		res.redirect('/');
+	  }
+	else{
+        res.cookie("mesajEroare", "Utilizator sau parola gresite!!");
+        res.redirect('/autentificare');
+      }
+	console.log("cookie: ", req.cookies);
 });
 
 
