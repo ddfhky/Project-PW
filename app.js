@@ -54,7 +54,7 @@ app.get('/chestionar', (req, res) => {
 			return;
 		}
 		listaIntrebari=JSON.parse(data);
-		res.render('chestionar', {intrebari: listaIntrebari});
+		res.render('chestionar', {intrebari: listaIntrebari, username: req.session.username});
 	});
 	// în fișierul views/chestionar.ejs este accesibilă variabila 'intrebari' care conține vectorul de întrebări
 });
@@ -80,7 +80,7 @@ app.post('/rezultat-chestionar', (req, res) => {
 		all++;
 	}
 	
-	 res.render('rezultat-chestionar',{intrebari:listaIntrebari, correctAnswers, all, rasp});
+	 res.render('rezultat-chestionar',{intrebari:listaIntrebari, correctAnswers, all, rasp, username: req.session.username});
 
 });
 

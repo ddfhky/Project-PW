@@ -227,3 +227,44 @@ footer {
     color:#eb0000;
     font-weight:bold;
 }
+
+aside{
+    width: 13%;
+    position: fixed;
+    top: 200px;
+    right:7px;
+    border: 2px solid #e7d1e5;
+    border-radius: 4px;
+    padding: 0px 10px 6px 10px; /*top, right, bottom, left*/
+    background-color: #edcfebc9;
+} 
+
+.btn-aside-login-logout{
+    padding:5px 15px;
+    font-size:14px;
+    border:1px solid #683d65f7;
+    border-radius:2px;
+    background-color: #6E4B6B;
+    color:white;
+}
+
+.message-aside{
+    font-size:14px;
+    display:flex;
+    justify-content: center;
+    margin-top:13px;
+    font-weight: bold;
+    color:#0e010d;
+}
+
+.information-aside{
+    margin-top:10px;
+    display:flex;
+    justify-content: center;
+}
+
+#hr-aside{
+    border: 1px solid #704e6e2e;
+    width:100px;
+    margin-top:2px;
+}
