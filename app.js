@@ -118,5 +118,12 @@ app.post('/verificare-autentificare', (req, res) => {
 
 });
 
+app.post('/logout',(req,res)=>{
+	res.clearCookie("utilizator");
+	req.session.destroy;
+	req.session.username=undefined;
+	res.redirect('/autentificare');
+  });
+
 
 app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:`+port));
