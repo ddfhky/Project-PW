@@ -248,6 +248,13 @@ aside{
     color:white;
 }
 
+.btn-aside-login-logout:hover{
+    border:1px solid #678a93;
+    border-radius:2px;
+    background-color: #237a91;
+    color:white;
+}
+
 .message-aside{
     font-size:14px;
     display:flex;
