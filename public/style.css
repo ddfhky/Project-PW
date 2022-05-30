@@ -218,3 +218,12 @@ footer {
     background-color: #a598a4;
     color:#281b27;
 }
+
+.mesaj-incorect-login{
+    margin:4px;
+    display:flex;
+    justify-content: center;
+    font-size:15px;
+    color:#eb0000;
+    font-weight:bold;
+}

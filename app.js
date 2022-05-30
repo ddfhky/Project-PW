@@ -2,6 +2,7 @@ const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser')
 const cookieParser=require('cookie-parser');
+var session = require('express-session');
 
 const app = express();
 
@@ -19,17 +20,30 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cookieParser());
+app.use(session({
+	secret: 'secret',
+	resave: false,
+	saveUninitialized: false,
+	cookie: {
+	maxAge: 100000
+	}
+  }));
+  
 
 // la accesarea din browser adresei http://localhost:6789/ se va returna textul 'Hello World'
 // proprietățile obiectului Request - req - https://expressjs.com/en/api.html#req
 // proprietățile obiectului Response - res - https://expressjs.com/en/api.html#res
 app.get('/', (req, res) => {
-    res.render('index');
+	console.log("cookie: ", req.cookies);
+	res.render('index', {username: req.session.username});
+
 });
 
 // la accesarea din browser adresei http://localhost:6789/chestionar se va apela funcția specificată
 let listaIntrebari;
 const fs=require('fs');
+const { response } = require('express');
+const { request } = require('http');
 app.get('/chestionar', (req, res) => {
 	
 
@@ -71,7 +85,8 @@ app.post('/rezultat-chestionar', (req, res) => {
 });
 
 app.get('/autentificare',(req,res) => {
-	res.render('autentificare');
+	res.clearCookie("mesajEroare"); 
+	res.render('autentificare', { mesaj: req.cookies.mesajEroare});
 });
 
 
@@ -82,9 +97,8 @@ app.post('/verificare-autentificare', (req, res) => {
 	let listaUtilizatori = JSON.parse(data);
 
 	console.log("USER: ", req.body);
-
 	let username = req.body['username'],
-      password = req.body['password'];
+      	password = req.body['password'];
 	var utilizator =null;
 	for(i=0; i<listaUtilizatori.length;i++){
 		if(listaUtilizatori[i].utilizator == username){
@@ -94,13 +108,14 @@ app.post('/verificare-autentificare', (req, res) => {
 	}
 	if(utilizator!=null && password == utilizator.parola){
 		res.cookie("numeUtilizator", utilizator.prenume);
+		req.session.username = username;
 		res.redirect('/');
 	  }
 	else{
-        res.cookie("mesajEroare", "Utilizator sau parola gresite!!");
+        res.cookie("mesajEroare", "Incorrect Username and/or Password!");
         res.redirect('/autentificare');
       }
-	console.log("cookie: ", req.cookies);
+
 });
 
 
