@@ -1,3 +1,4 @@
 [
-    {"utilizator": "test", "parola": "test", "nume":  "Lupu", "prenume":  "Maria", "rol":"user"}
+    {"utilizator": "test", "parola": "test", "nume":  "Test", "prenume":  "TestPrenume", "rol":"user"},
+    {"utilizator": "Maria26", "parola": "Astaeparola", "nume":  "Lupu", "prenume":  "Maria", "rol":"user"}
 ]
