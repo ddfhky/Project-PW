@@ -154,5 +154,33 @@ app.get('/creare-bd',(req,res) =>{
 	res.redirect('/');
 });
 
+app.get('/inserare-bd',(req,res) =>{
+	var con = mysql.createConnection({
+		host: "localhost",
+		user: "maria_pw",
+		password: "darkorbit"
+	});
+
+	con.connect(function(err){
+		if(err) throw err;
+
+		console.log("Connected");
+
+		var sql_1="INSERT INTO produse (nume_produs, pret_produs) VALUES ?";
+		var values=[
+			['Standard Photography','0.39'],
+			['Large Photography','7.99'],
+			['Square Photography','0.59'],
+			['Retro Photography','0.69'],
+			['Panoramic Photography','15.99'],
+			['Portrait Photography','2.56']
+		];
+		con.query(sql_1, function(err,result){
+			if(err) throw err;
+			console.log("record inserted");
+		});
+	});
+	res.redirect('/');
+});
 
 app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:`+port));
