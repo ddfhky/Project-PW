@@ -226,6 +226,7 @@ app.post('/adaugare-cos',(req,res) => {
 			}
 		});
 		console.log(req.session.produse);
+		console.log("ceva");
 	});
 	res.redirect('/');
 });
