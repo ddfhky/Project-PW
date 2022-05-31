@@ -125,5 +125,34 @@ app.post('/logout',(req,res)=>{
 	res.redirect('/autentificare');
   });
 
+app.get('/creare-bd',(req,res) =>{
+
+	var con = mysql.createConnection({
+	  host: "localhost",
+	  user: "maria_pw",
+	  password: "darkorbit"
+	});
+
+	con.connect(function(err) {
+		if(err) throw err;
+
+		console.log("Conected!");
+
+		con.query("CREATE DATABASE IF NOT EXISTS cumparaturi",function(err, result){
+			if (err) throw err;
+			console.log("Database created");
+		});
+
+
+		con.query("CREATE TABLE produse(produs_id INT AUTO_INCREMENT PRIMARY KEY, nume_produs VARCHAR(25), pret_produs DOUBLE) ", function (err, result) {
+			if (err) throw err;
+			console.log("Table created");
+		});
+
+	});
+
+	res.redirect('/');
+});
+
 
 app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:`+port));
