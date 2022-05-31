@@ -275,3 +275,25 @@ aside{
     width:100px;
     margin-top:2px;
 }
+
+.butoane-bd{
+    display:flex;
+    justify-content: center;
+}
+
+.btn-bd{
+    margin:30px;
+    padding:5px 15px;
+    font-size:14px;
+    border:1px solid #566d8a;
+    border-radius:2px;
+    background-color: #4b6688;
+    color:white;
+}
+
+.btn-bd:hover{
+    border:1px solid #c2a7a4;
+    border-radius:2px;
+    background-color: #be867e;
+    color:white;
+}
