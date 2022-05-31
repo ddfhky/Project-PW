@@ -3,7 +3,7 @@ const expressLayouts = require('express-ejs-layouts');
 const bodyParser = require('body-parser')
 const cookieParser=require('cookie-parser');
 var session = require('express-session');
-
+var mysql = require('mysql');
 const app = express();
 
 const port = 6789;
@@ -44,6 +44,8 @@ let listaIntrebari;
 const fs=require('fs');
 const { response } = require('express');
 const { request } = require('http');
+const { runInNewContext } = require('vm');
+const { DEC8_BIN } = require('mysql/lib/protocol/constants/charsets');
 app.get('/chestionar', (req, res) => {
 	
 
@@ -128,9 +130,10 @@ app.post('/logout',(req,res)=>{
 app.get('/creare-bd',(req,res) =>{
 
 	var con = mysql.createConnection({
-	  host: "localhost",
-	  user: "maria_pw",
-	  password: "darkorbit"
+		host: "localhost",
+		user: "root",
+		password: "darkorbit",
+		database:"maria_pw"
 	});
 
 	con.connect(function(err) {
@@ -157,8 +160,9 @@ app.get('/creare-bd',(req,res) =>{
 app.get('/inserare-bd',(req,res) =>{
 	var con = mysql.createConnection({
 		host: "localhost",
-		user: "maria_pw",
-		password: "darkorbit"
+		user: "root",
+		password: "darkorbit",
+		database:"maria_pw"
 	});
 
 	con.connect(function(err){
@@ -175,10 +179,53 @@ app.get('/inserare-bd',(req,res) =>{
 			['Panoramic Photography','15.99'],
 			['Portrait Photography','2.56']
 		];
-		con.query(sql_1, function(err,result){
+		con.query(sql_1,[values], function(err,result){
 			if(err) throw err;
 			console.log("record inserted");
 		});
+	});
+	res.redirect('/');
+});
+
+let db=[];
+app.post('/adaugare-cos',(req,res) => {
+	var data=req.body;
+
+	console.log(data['produs_id']);
+	if(req.session.produse){
+		req.session.produse.push(data['produs_id']);
+	}
+	else req.session.produse=[data['produs_id']];
+
+	console.log(req.session.produse);
+
+	var con = mysql.createConnection({
+		host: "localhost",
+		user: "root",
+		password: "darkorbit",
+		database:"maria_pw"
+	});
+
+	con.connect(function(err){
+		if(err) throw err;
+
+		console.log("Connected");
+
+		var sql_1="SELECT * FROM produse WHERE produs_id="+req.body['produs_id'];
+		con.query(sql_1,function(err,result){
+			if(err) throw err;
+
+			for(var i=0;i<result.length;i++)
+			{
+				var prod={
+					'id':result[i].produs_id,
+					'nume':result[i].nume_produs,
+					'pret':result[i].pret_produs
+				}
+				db.push(prod);
+			}
+		});
+		console.log(req.session.produse);
 	});
 	res.redirect('/');
 });

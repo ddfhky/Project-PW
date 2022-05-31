@@ -10,4 +10,20 @@
         </form>
 </div>
 
+<div>
+    <% for(var i=1 in db){ %>
+    
+        <h1><%= db[i].nume %></h1>
+        <p>Pret: <%= db[i].pret %> lei</p>
+        <form action="/adaugare-cos" method="POST">
+            <input type="hidden" name="id_produs" value="<%= db[i].id %>">
+            <% if(username){ %>
+                <button class="btn" type="submit" name="id">Adauga in cos</button><br>
+            <% } else { %>
+                <button type="submit" name="id" disabled>Adauga in cos</button> <br>
+           <% } %>
+        </form>
+
+    <% } %>
+</div>
 
