@@ -33,10 +33,39 @@ app.use(session({
 // la accesarea din browser adresei http://localhost:6789/ se va returna textul 'Hello World'
 // proprietățile obiectului Request - req - https://expressjs.com/en/api.html#req
 // proprietățile obiectului Response - res - https://expressjs.com/en/api.html#res
+let database=[];
 app.get('/', (req, res) => {
 	console.log("cookie: ", req.cookies);
-	res.render('index', {username: req.session.username});
+	console.log("vr ");
 
+	var con = mysql.createConnection({
+		host: "localhost",
+		user: "root",
+		password: "darkorbit",
+		database:"maria_pw"
+	});
+
+	con.connect(function(err){
+		if(err) throw err;
+		
+		con.query("SELECT * FROM produse", function(err,result){
+			if(err){
+				throw err;
+			}
+			else{
+				for(var i=0;i<result.length;i++){
+					var prod={
+						'id': result[i].produs_id,
+						'nume': result[i].nume_produs,
+						'pret': result[i].pret_produs
+					}
+					database.push(prod);
+				}
+				res.render('index',{db:database, username: req.session.username});
+				database=[];
+			}
+		});
+	});
 });
 
 // la accesarea din browser adresei http://localhost:6789/chestionar se va apela funcția specificată
@@ -46,6 +75,8 @@ const { response } = require('express');
 const { request } = require('http');
 const { runInNewContext } = require('vm');
 const { DEC8_BIN } = require('mysql/lib/protocol/constants/charsets');
+const { redirect } = require('express/lib/response');
+
 app.get('/chestionar', (req, res) => {
 	
 
@@ -110,7 +141,7 @@ app.post('/verificare-autentificare', (req, res) => {
 	}
 	if(utilizator!=null && password == utilizator.parola){
 		res.cookie("numeUtilizator", utilizator.prenume);
-		req.session.username = username;
+		req.session.username = utilizator.prenume;
 		res.redirect('/');
 	  }
 	else{
@@ -147,6 +178,11 @@ app.get('/creare-bd',(req,res) =>{
 		});
 
 
+		con.query("DROP TABLE produse",function(err,result){
+			if(err) throw err;
+			console.log("Tabela produse a fost stearsa");
+		});
+
 		con.query("CREATE TABLE produse(produs_id INT AUTO_INCREMENT PRIMARY KEY, nume_produs VARCHAR(25), pret_produs DOUBLE) ", function (err, result) {
 			if (err) throw err;
 			console.log("Table created");
@@ -170,6 +206,11 @@ app.get('/inserare-bd',(req,res) =>{
 
 		console.log("Connected");
 
+		con.query("DELETE FROM produse",function(err,result){
+			if (err) throw err;
+			console.log("S-au sters datele din tabela.");
+		  });
+
 		var sql_1="INSERT INTO produse (nume_produs, pret_produs) VALUES ?";
 		var values=[
 			['Standard Photography','0.39'],
@@ -191,11 +232,11 @@ let db=[];
 app.post('/adaugare-cos',(req,res) => {
 	var data=req.body;
 
-	console.log(data['produs_id']);
+	console.log(data['idProdus']);
 	if(req.session.produse){
-		req.session.produse.push(data['produs_id']);
+		req.session.produse.push(data['idProdus']);
 	}
-	else req.session.produse=[data['produs_id']];
+	else req.session.produse=[data['idProdus']];
 
 	console.log(req.session.produse);
 
@@ -211,7 +252,7 @@ app.post('/adaugare-cos',(req,res) => {
 
 		console.log("Connected");
 
-		var sql_1="SELECT * FROM produse WHERE produs_id="+req.body['produs_id'];
+		var sql_1="SELECT * FROM produse WHERE produs_id="+req.body['idProdus'];
 		con.query(sql_1,function(err,result){
 			if(err) throw err;
 
@@ -230,5 +271,7 @@ app.post('/adaugare-cos',(req,res) => {
 	});
 	res.redirect('/');
 });
+
+
 
 app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:`+port));
