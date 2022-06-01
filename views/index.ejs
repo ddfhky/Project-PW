@@ -46,7 +46,7 @@
                 <form action="/adaugare-cos" method="POST">
                     <input type="hidden" name="idProdus" value="<%= db[i].id %>">
                     <% if(username){ %>
-                        <button class="btn-adauga-cos" type="submit" name="id"><img src="imagini/supermarket.png" alt="icon" class="icon-btn"><span>Add to card</span></button><br>
+                        <button class="btn-adauga-cos" type="submit" name="id"><img src="imagini/supermarket.png" alt="icon" class="icon-btn"><span>Add to cart</span></button><br>
                     <% } else { %>
                         <button class="btn-adauga-cos" type="submit" name="id" disabled><span id="span-btn-disabled">Add to cart</span></button> <br>
                 <% } %>
