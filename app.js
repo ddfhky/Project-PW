@@ -271,6 +271,10 @@ app.post('/adaugare-cos',(req,res) => {
 	res.redirect('/');
 });
 
+app.get('/vizualizare-cos',(req,res)=>{
+	console.log(db);
+	res.render('vizualizare-cos',{numar: db,username: req.session.username});
+});
 
 
 app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:`+port));

@@ -233,10 +233,11 @@ footer {
     position: fixed;
     top: 200px;
     right:7px;
-    border: 2px solid #e7d1e5;
+    border: 2px solid #dfdfdf;
     border-radius: 4px;
     padding: 0px 10px 6px 10px; /*top, right, bottom, left*/
-    background-color: #edcfebc9;
+    background-color: #f5f5f5;
+    box-shadow: 3px 2px 8px -6px rgb(0 0 0 / 70%);
 } 
 
 .btn-aside-login-logout{
@@ -300,13 +301,13 @@ footer {
 
 .aside-index{
     width: 13%;
-    right:7px;
     border: 2px solid #dfdfdf;
     border-radius: 4px;
     padding: 0px 10px 6px 10px; /*top, right, bottom, left*/
     background-color: #f5f5f5;
     box-shadow: 3px 2px 8px -6px rgb(0 0 0 / 70%);
     margin-left:auto;
+    margin-right:auto;
     position:relative;
 }
 
@@ -373,4 +374,19 @@ footer {
     background-color: #d4c0d3;
     border:1px solid #cfcecf;
     border-radius:2px;
+}
+
+.titles-index{
+    padding: 10px;
+    margin:10px 0;
+    width:100%;
+    display:flex;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Dancing Script';
+    font-size:60px;
+}
+
+.container-index-principal{
+    background-color: #f5f5f5;
 }
