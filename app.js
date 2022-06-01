@@ -232,7 +232,7 @@ let db=[];
 app.post('/adaugare-cos',(req,res) => {
 	var data=req.body;
 
-	console.log(data['idProdus']);
+	console.log("id produs= " + data['idProdus']);
 	if(req.session.produse){
 		req.session.produse.push(data['idProdus']);
 	}
@@ -267,7 +267,6 @@ app.post('/adaugare-cos',(req,res) => {
 			}
 		});
 		console.log(req.session.produse);
-		console.log("ceva");
 	});
 	res.redirect('/');
 });
