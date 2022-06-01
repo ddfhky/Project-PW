@@ -331,4 +331,46 @@ footer {
     text-align: center;
 }
 
+.btn-adauga-cos{
+    padding:0;
+    margin:14px;
+    background-color: #d4c0d3;
+    border:1px solid #cfcecf;
+    border-radius:2px;
+}
 
+.icon-btn{
+    padding:3px;
+    float:left;
+    width:32px;
+    margin:0;
+    background-color: #f1f1f1;
+}
+
+.btn-adauga-cos span{
+    float:right;
+    margin-top:8px;
+    margin-bottom:auto;
+    margin-left:10px;
+    padding-right: 9px;
+    font-weight: bold;
+    color:#161116;
+}
+
+.btn-adauga-cos:hover{
+    background-color: #42A1A5;
+    border:1px solid #42A1A5;
+}
+
+#span-btn-disabled{
+    margin-bottom:6px;
+    font-weight: bold;
+    color:#8f848f;
+}
+.btn-adauga-cos:disabled{
+    padding:0;
+    margin:14px;
+    background-color: #d4c0d3;
+    border:1px solid #cfcecf;
+    border-radius:2px;
+}

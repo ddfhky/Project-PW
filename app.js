@@ -172,7 +172,7 @@ app.get('/creare-bd',(req,res) =>{
 
 		console.log("Conected!");
 
-		con.query("CREATE DATABASE IF NOT EXISTS cumparaturi",function(err, result){
+		con.query("CREATE DATABASE IF NOT EXISTS maria_pw",function(err, result){
 			if (err) throw err;
 			console.log("Database created");
 		});

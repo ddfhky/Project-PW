@@ -20,7 +20,7 @@
     <h2 class="titles">Welcome <%= username %>!</h2>
 </div>
 
-<br>
+
 
 <div class="butoane-bd">
         <form action="/creare-bd" method="GET">          
@@ -31,7 +31,7 @@
         </form>
 </div>
 
-<br><br>
+<br><br><br>
 <div class="card">
     <% for(var i=1 in db){ %>
             <div class="card-body">
@@ -40,9 +40,9 @@
                 <form action="/adaugare-cos" method="POST">
                     <input type="hidden" name="idProdus" value="<%= db[i].id %>">
                     <% if(username){ %>
-                        <button class="btn" type="submit" name="id">Adauga in cos</button><br>
+                        <button class="btn-adauga-cos" type="submit" name="id"><img src="imagini/supermarket.png" alt="icon" class="icon-btn"><span>Add to card</span></button><br>
                     <% } else { %>
-                        <button type="submit" name="id" disabled>Adauga in cos</button> <br>
+                        <button class="btn-adauga-cos" type="submit" name="id" disabled><span id="span-btn-disabled">Add to cart</span></button> <br>
                 <% } %>
                 </form>
             </div>
