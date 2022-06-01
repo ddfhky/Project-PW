@@ -1,3 +1,4 @@
+
 <br><br>
 <h2 class="titles">Shopping cart:</h2>
 <br><br>
@@ -10,3 +11,23 @@
         </div>
     <% } %>
 </div>
+<br><br><br><br>
+<aside class="aside-index">
+    <form action="/logout" method="POST">
+        <% if(username != undefined ){ %>
+            <label class="message-aside"><%= username %></label>
+            <hr id="hr-aside">
+            <div class="btn">
+                <button class ="btn-aside-login-logout" type="submit" >LOGOUT</button>
+            </div>
+        <%}else{%>
+            <label class="message-aside">You are not logged in.</label>
+            <div class="btn">
+                <button class ="btn-aside-login-logout" type="submit" >LOGIN</button>
+            </div>			
+        <%}%>
+    </form>
+</aside>
+<br><br>
+<br><br>
+<br><br>
