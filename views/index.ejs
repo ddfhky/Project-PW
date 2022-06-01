@@ -1,5 +1,26 @@
-<br><br><br>
-<h2 class="titles">Bine ai venit <%= username %>!</h2>
+<br>
+<div class="welcome-aside-index">
+    <aside class="aside-index">
+        <form action="/logout" method="POST">
+            <% if(username != undefined ){ %>
+                <label class="message-aside"><%= username %></label>
+                <hr id="hr-aside">
+                <div class="btn">
+                    <button class ="btn-aside-login-logout" type="submit" >LOGOUT</button>
+                </div>
+            <%}else{%>
+                <label class="message-aside">You are not logged in.</label>
+                <div class="btn">
+                    <button class ="btn-aside-login-logout" type="submit" >LOGIN</button>
+                </div>			
+            <%}%>
+        </form>
+    </aside>
+
+    <h2 class="titles">Welcome <%= username %>!</h2>
+</div>
+
+<br>
 
 <div class="butoane-bd">
         <form action="/creare-bd" method="GET">          
@@ -10,20 +31,21 @@
         </form>
 </div>
 
-<div>
+<br><br>
+<div class="card">
     <% for(var i=1 in db){ %>
-    
-        <h1><%= db[i].nume %></h1>
-        <p>Pret: <%= db[i].pret %> lei</p>
-        <form action="/adaugare-cos" method="POST">
-            <input type="hidden" name="idProdus" value="<%= db[i].id %>">
-            <% if(username){ %>
-                <button class="btn" type="submit" name="id">Adauga in cos</button><br>
-            <% } else { %>
-                <button type="submit" name="id" disabled>Adauga in cos</button> <br>
-           <% } %>
-        </form>
-
+            <div class="card-body">
+                <h2 class="card-title"><%= db[i].nume %></h1>
+                <p>Price: <%= db[i].pret %> RON</p>
+                <form action="/adaugare-cos" method="POST">
+                    <input type="hidden" name="idProdus" value="<%= db[i].id %>">
+                    <% if(username){ %>
+                        <button class="btn" type="submit" name="id">Adauga in cos</button><br>
+                    <% } else { %>
+                        <button type="submit" name="id" disabled>Adauga in cos</button> <br>
+                <% } %>
+                </form>
+            </div>
     <% } %>
 </div>
-
+<br><br><br>
