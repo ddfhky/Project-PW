@@ -1,8 +1,12 @@
 <br><br>
 <h2 class="titles">Shopping cart:</h2>
-<div>
-<% for(var i=0 in numar){ %>
-    <h1><%= numar[i].nume %></h1>
-    <p>Pret: <%= numar[i].pret %> RON</p>
-<% } %>
+<br><br>
+
+<div class="container-with-products-cart">
+       <% for(var i=0 in numar){ %>
+        <div class="products-in-cart">
+                <h2 class="nume-product-in-cart"><%=numar[i].nume%></h1>
+                <p class="price-product-in-cart">Price: <%=numar[i].pret%> RON</p>
+        </div>
+    <% } %>
 </div>
