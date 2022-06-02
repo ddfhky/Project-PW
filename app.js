@@ -50,7 +50,7 @@ app.get('/', (req, res) => {
 		
 		con.query("SELECT * FROM produse", function(err,result){
 			if(err){
-				throw err;
+				res.redirect('/');
 			}
 			else{
 				for(var i=0;i<result.length;i++){
@@ -61,7 +61,7 @@ app.get('/', (req, res) => {
 					}
 					database.push(prod);
 				}
-				res.render('index',{db:database, username: req.session.username,rol: req.session.rol});
+				res.render('index',{db1:database, username: req.session.username,rol: req.session.rol});
 				database=[];
 			}
 		});
@@ -177,7 +177,6 @@ app.get('/creare-bd',(req,res) =>{
 			if (err) throw err;
 			console.log("Database created");
 		});
-
 
 		con.query("DROP TABLE produse",function(err,result){
 			if(err) throw err;
@@ -310,4 +309,26 @@ app.get('/admin',(req,res)=>{
 	});
 });
 
+
+app.post('/adauga-produs',(req,res) => {
+	var con = mysql.createConnection({
+		host: "localhost",
+		user: "root",
+		password: "darkorbit",
+		database:"maria_pw"
+	});
+
+	con.connect(function(err){
+	
+		if(err) throw err;
+
+		var sql_1="INSERT INTO produse (nume, pret) VALUES ?";
+		var values=[[req.body['numeProdus'],req.body['pretProdus']]];
+		con.query(sql_1,[values],function(err,result){
+			if(err)throw err;
+		});
+
+	});
+	res.redirect('/admin');
+});
 app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:`+port));
