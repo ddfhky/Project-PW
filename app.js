@@ -61,7 +61,7 @@ app.get('/', (req, res) => {
 					}
 					database.push(prod);
 				}
-				res.render('index',{db1:database, username: req.session.username,rol: req.session.rol});
+				res.render('index',{db:database, username: req.session.username,rol: req.session.rol});
 				database=[];
 			}
 		});

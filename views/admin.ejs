@@ -1,0 +1,49 @@
+
+<div class="container-index-principal">
+    <div class="welcome-aside-index">
+        
+        <br><br><br><br><br><br><br><br>
+    
+        <h2 class="titles-index">Welcome <%= username %>!</h2>
+    </div>
+    
+    <div class="butoane-bd">
+            <form action="/creare-bd" method="GET">          
+                    <button class="btn-bd" type="submit">Create databases</button>
+            </form>
+            <form action="/inserare-bd" method="GET">
+                    <button class="btn-bd" type="submit">Upload databases</button>
+            </form>
+    </div>
+    
+    <br><br><br><br><br><br><br><br><br>
+    </div>
+    
+    <br><br><br><br><br>
+    
+    <aside class="aside-index">
+        <form action="/logout" method="POST">
+            <% if(username != undefined ){ %>
+                <label class="message-aside"><%= username %></label>
+                <hr id="hr-aside">
+                <div class="btn">
+                    <button class ="btn-aside-login-logout" type="submit" >LOGOUT</button>
+                </div>
+            <%}else{%>
+                <label class="message-aside">You are not logged in.</label>
+                <div class="btn">
+                    <button class ="btn-aside-login-logout" type="submit" >LOGIN</button>
+                </div>			
+            <%}%>
+        </form>
+    </aside>
+    <br><br><br><br><br>
+    <div class="card">
+        <% for(var i=1 in db){ %>
+                <div class="card-body">
+                    <h2 class="card-title"><%= db[i].nume %></h1>
+                    <p>Price: <%= db[i].pret %> RON</p>
+                </div>
+        <% } %>
+    </div>
+    <br><br><br>

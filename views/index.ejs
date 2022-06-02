@@ -39,12 +39,12 @@
 </aside>
 <br><br><br><br><br>
 <div class="card">
-    <% for(var i=1 in db1){ %>
+    <% for(var i=1 in db){ %>
             <div class="card-body">
-                <h2 class="card-title"><%= db1[i].nume %></h1>
-                <p>Price: <%= db1[i].pret %> RON</p>
+                <h2 class="card-title"><%= db[i].nume %></h1>
+                <p>Price: <%= db[i].pret %> RON</p>
                 <form action="/adaugare-cos" method="POST">
-                    <input type="hidden" name="idProdus" value="<%= db1[i].id %>">
+                    <input type="hidden" name="idProdus" value="<%= db[i].id %>">
                     <% if(username){ %>
                         <button class="btn-adauga-cos" type="submit" name="id"><img src="imagini/supermarket.png" alt="icon" class="icon-btn"><span>Add to cart</span></button><br>
                     <% } else { %>
