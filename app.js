@@ -6,6 +6,8 @@ var session = require('express-session');
 var mysql = require('mysql');
 const app = express();
 
+const fileUpload=require("express-fileupload");
+
 const port = 6789;
 
 // directorul 'views' va conține fișierele .ejs (html + js executat la server)
@@ -18,6 +20,7 @@ app.use(express.static('public'))
 app.use(bodyParser.json());
 // utilizarea unui algoritm de deep parsing care suportă obiecte în obiecte
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(fileUpload());
 
 app.use(cookieParser());
 app.use(session({
@@ -57,7 +60,8 @@ app.get('/', (req, res) => {
 					var prod={
 						'id': result[i].produs_id,
 						'nume': result[i].nume_produs,
-						'pret': result[i].pret_produs
+						'pret': result[i].pret_produs,
+						'image':result[i].img
 					}
 					database.push(prod);
 				}
@@ -187,7 +191,7 @@ app.get('/creare-bd',(req,res) =>{
 			console.log("Tabela produse a fost stearsa");
 		});
 
-		con.query("CREATE TABLE produse(produs_id INT AUTO_INCREMENT PRIMARY KEY, nume_produs VARCHAR(25), pret_produs DOUBLE) ", function (err, result) {
+		con.query("CREATE TABLE produse(produs_id INT AUTO_INCREMENT PRIMARY KEY, nume_produs VARCHAR(25), pret_produs DOUBLE,img VARCHAR(25)) ", function (err, result) {
 			if (err) throw err;
 			console.log("Table created");
 		});
@@ -215,14 +219,14 @@ app.get('/inserare-bd',(req,res) =>{
 			console.log("S-au sters datele din tabela.");
 		  });
 
-		var sql_1="INSERT INTO produse (nume_produs, pret_produs) VALUES ?";
+		var sql_1="INSERT INTO produse (nume_produs, pret_produs, img) VALUES ?";
 		var values=[
-			['Standard Photography','0.39'],
-			['Large Photography','7.99'],
-			['Square Photography','0.59'],
-			['Retro Photography','0.69'],
-			['Panoramic Photography','15.99'],
-			['Portrait Photography','2.56']
+			['Standard Photography','0.39','imagini/produse/standard.jpg'],
+			['Large Photography','7.99','imagini/produse/large.jpg'],
+			['Square Photography','0.59','imagini/produse/square.jpg'],
+			['Retro Photography','0.69','imagini/produse/retro.jpg'],
+			['Panoramic Photography','15.99','imagini/produse/panoramic.jpg'],
+			['Portrait Photography','2.56','imagini/produse/portrait.jpg']
 		];
 		con.query(sql_1,[values], function(err,result){
 			if(err) throw err;
@@ -302,7 +306,8 @@ app.get('/admin',(req,res)=>{
 					var prod={
 						'id': result[i].produs_id,
 						'nume': result[i].nume_produs,
-						'pret': result[i].pret_produs
+						'pret': result[i].pret_produs,
+						'image':result[i].img
 					}
 					database.push(prod);
 				}
@@ -335,4 +340,6 @@ app.post('/adauga-produs',(req,res) => {
 	});
 	res.redirect('/admin');
 });
+
+
 app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:`+port));
