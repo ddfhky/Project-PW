@@ -38,6 +38,19 @@
         </form>
     </aside>
     <br><br><br><br><br>
+
+<div class="add-product-container">
+    <form action="/adauga-produs" method="POST">
+        <label>Product name:</label>
+        <input type="text" name="numeProdus">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <label>Price:</label>
+        <input type="text" name="pretProdus">&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn-add-product" type="submit">Add</button>
+    </form>
+</div>
+
+<br><br><br><br>
+
     <div class="card">
         <% for(var i=1 in db){ %>
                 <div class="card-body">

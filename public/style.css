@@ -416,4 +416,37 @@ footer {
     text-align: right;
 }
 
+.add-product-container{
+    display:flex;
+    justify-content: center;
+    background-color: #f5f5f5;
 
+}
+
+.add-product-container label{
+    font-weight: bold;
+    margin:4px;
+}
+
+.add-product-container input[type=text]{
+    border-radius: 2px;
+    border:1px solid #462e44;
+    padding:3px;
+}
+
+.btn-add-product{
+    margin:30px;
+    padding:5px 15px;
+    font-size:14px;
+    border:1px solid #566d8a;
+    border-radius:2px;
+    background-color: #4b6688;
+    color:white;
+}
+
+.btn-add-product:hover{
+    border:1px solid #c2a7a4;
+    border-radius:2px;
+    background-color: #be867e;
+    color:white;
+}

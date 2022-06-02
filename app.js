@@ -143,7 +143,10 @@ app.post('/verificare-autentificare', (req, res) => {
 		res.cookie("numeUtilizator", utilizator.prenume);
 		req.session.username = utilizator.prenume;
 		req.session.rol=utilizator.rol;
-		res.redirect('/');
+		if(req.session.rol=="admin")
+			res.redirect('/admin');
+		else 
+			res.redirect('/');
 	  }
 	else{
         res.cookie("mesajEroare", "Incorrect Username and/or Password!");
@@ -156,6 +159,7 @@ app.post('/logout',(req,res)=>{
 	res.clearCookie("utilizator");
 	req.session.destroy;
 	req.session.username=undefined;
+	
 	res.redirect('/autentificare');
   });
 
@@ -302,7 +306,7 @@ app.get('/admin',(req,res)=>{
 					}
 					database.push(prod);
 				}
-				res.render('index',{db:database, username: req.session.username, rol: req.session.rol});
+				res.render('admin',{db:database, username: req.session.username, rol: req.session.rol});
 				database=[];
 			}
 		});
@@ -321,11 +325,11 @@ app.post('/adauga-produs',(req,res) => {
 	con.connect(function(err){
 	
 		if(err) throw err;
-
-		var sql_1="INSERT INTO produse (nume, pret) VALUES ?";
+		console.log("cevalefndwja")
+		var sql_1="INSERT INTO produse (nume_produs, pret_produs) VALUES ?";
 		var values=[[req.body['numeProdus'],req.body['pretProdus']]];
 		con.query(sql_1,[values],function(err,result){
-			if(err)throw err;
+			if(err) throw err;
 		});
 
 	});
