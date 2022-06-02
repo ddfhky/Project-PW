@@ -61,7 +61,7 @@ app.get('/', (req, res) => {
 					}
 					database.push(prod);
 				}
-				res.render('index',{db:database, username: req.session.username});
+				res.render('index',{db:database, username: req.session.username,rol: req.session.rol});
 				database=[];
 			}
 		});
@@ -87,7 +87,7 @@ app.get('/chestionar', (req, res) => {
 			return;
 		}
 		listaIntrebari=JSON.parse(data);
-		res.render('chestionar', {intrebari: listaIntrebari, username: req.session.username});
+		res.render('chestionar', {intrebari: listaIntrebari, username: req.session.username,rol: req.session.rol});
 	});
 	// în fișierul views/chestionar.ejs este accesibilă variabila 'intrebari' care conține vectorul de întrebări
 });
@@ -113,13 +113,13 @@ app.post('/rezultat-chestionar', (req, res) => {
 		all++;
 	}
 	
-	 res.render('rezultat-chestionar',{intrebari:listaIntrebari, correctAnswers, all, rasp, username: req.session.username});
+	 res.render('rezultat-chestionar',{intrebari:listaIntrebari, correctAnswers, all, rasp, username: req.session.username,rol: req.session.rol});
 
 });
 
 app.get('/autentificare',(req,res) => {
 	res.clearCookie("mesajEroare"); 
-	res.render('autentificare', { mesaj: req.cookies.mesajEroare});
+	res.render('autentificare', { mesaj: req.cookies.mesajEroare,rol: req.session.rol});
 });
 
 
@@ -142,6 +142,7 @@ app.post('/verificare-autentificare', (req, res) => {
 	if(utilizator!=null && password == utilizator.parola){
 		res.cookie("numeUtilizator", utilizator.prenume);
 		req.session.username = utilizator.prenume;
+		req.session.rol=utilizator.rol;
 		res.redirect('/');
 	  }
 	else{
@@ -276,5 +277,37 @@ app.get('/vizualizare-cos',(req,res)=>{
 	res.render('vizualizare-cos',{numar: db,username: req.session.username});
 });
 
+
+app.get('/admin',(req,res)=>{
+	var con = mysql.createConnection({
+		host: "localhost",
+		user: "root",
+		password: "darkorbit",
+		database:"maria_pw"
+	});
+
+	con.connect(function(err){
+
+		if(err) throw err;
+
+		con.query("SELECT * FROM produse", function(err,result){
+			if(err){
+				throw err;
+			}
+			else{
+				for(var i=0;i<result.length;i++){
+					var prod={
+						'id': result[i].produs_id,
+						'nume': result[i].nume_produs,
+						'pret': result[i].pret_produs
+					}
+					database.push(prod);
+				}
+				res.render('index',{db:database, username: req.session.username, rol: req.session.rol});
+				database=[];
+			}
+		});
+	});
+});
 
 app.listen(port, () => console.log(`Serverul rulează la adresa http://localhost:`+port));
